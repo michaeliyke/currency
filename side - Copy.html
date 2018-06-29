@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Side</title>
+	<script type="text/javascript" src="../../JavaScript/PT.js"></script>
+	<script type="text/javascript">
+		Techie(function(){
+				function getByAttr(attr){var element;
+   walk(document.body, function(){
+   	at = this.getAttribute("id");
+     if (at){
+       element = this;
+       return {};
+     } 
+     Log("We couldn't see it!")
+   }); 
+                         
+         return element;
+        }
+
+
+getByAttr("container");
+var find = "DOUBLE_V";
+Log(find)
+		})
+
+
+
+
+
+
+
+
+
+
+var fooWalk = function(){}; fooCounter = null;
+		function walk(node, func) {
+			if (fooCounter ) {
+        	return true; 
+           
+        }
+        if (node && node.nodeType == 1 /*&& fooCounter == null*/){ 
+            fooCounter =  func.call(node, node);
+
+        }
+        a(fooCounter);
+        node = node.firstChild;
+        if (fooCounter != null ) { 
+        	return true;
+           
+        } else {
+        	return foo(node); 
+        }
+
+            
+           alert(fooCounter)
+
+        function foo(node) {
+    	while (node) {
+    		if (fooCounter ) { 
+        	// break; 
+           
+        }
+            walk(node, func);
+            node = node.nextSibling;
+        }
+    }
+        
+    }
+
+
+	</script>
+</head>
+<body>
+<h1 id="techie">Side</h1>
+<h1 class="techie">Side</h1>
+<h1 pt="techie">Side</h1>
+<h1 data-prize="techie">Side</h1>
+<h1 prize="techie">Side</h1>
+<h1 value="techie">Side</h1>
+</body>
+</html>

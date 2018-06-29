@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Side</title>
+	<script type="text/javascript" src="../../JavaScript/PT.js"></script>
+	<script type="text/javascript"> var el;
+		Techie(function(body, head, sapi, $, _, w, Log, stringify, stringifyAll){
+	var walk = this.walk;
+	function getElementByAttribute(att, value){
+		var attribute;
+return  walk(document, function(){
+   	if(this.getAttribute && (attribute = this.getAttribute(att))){
+   		if (value) {
+   			if (attribute == value.trim()) {
+   				return this;
+   			}
+   		} else{
+   			return this;
+   		}
+   	}
+   });         
+      }
+
+function getElementById(id) {
+return walk(document, function(node) {/* a(node.id)*/
+	if(node.id && node.id == id){return node;} 
+});
+}
+       
+Log(getElementByAttribute("class").id);
+});
+
+
+	</script>
+</head>
+<body>
+
+
+<section id="surface section">
+	<section id="messo section">
+		<section id="lithosphere">
+			<div id="outer div">
+				<aside id="outer aside">
+					<div id="inner div">
+						<section id="section section">
+							<section id="section power 3">
+								<div id="ultra div">Plus</div>
+								<div id="ultra div 2">Plus
+									<section id="section power 4">
+										<div id="div plus">
+											<big id="ultra">Ultra</big>
+										</div>
+									</section>
+								</div>
+								<div>Plus</div>
+							</section>
+						</section>
+						<p id="hyper"></p>
+					</div>
+				</aside>
+			</div>
+		</section>
+	</section>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="prize">
+<big id="techie">But I am big!</big>
+Side</h1>
+<div id="entery">
+    <h1 id="one" class="techie">Side</h1>
+    <h1 id="two" class="techie">Side <span id="h1_inside">Stiil on it</span> </h1>
+    <div id="div_in_div_after">
+        <span id="inside_div_in_div_after">Stiil on it</span> </h1>
+    </div>
+    <h1 id="three" class="techie">Side</h1>
+</div>
+
+
+
+<h1 id="Nig" pt="techie">Side</h1>
+<h1 id="Ltd" data-prize="techie">Side</h1>
+<h1 id="AKA" prize="techie">Side</h1>
+<h1 id="PT" value="techie">Side</h1>
+
+
+
+</body>
+</html>
