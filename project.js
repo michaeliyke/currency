@@ -1,6 +1,6 @@
 "use strict";
-Techie("#btn", function($,btn, body, head, sapi, _, w, log, stringify, stringifyAll){ //With arrow function here, the "this" context reference will be lost. Let's live it alone
-	let country, currency, symbol, value = 1, local, foreign, from, to , output, exchangeRate, 
+Techie("#btn", function($,btn, body, head, sapi, _, w, Log, stringify, stringifyAll){ //With arrow function here, the "this" context reference will be lost. Let's live it alone
+	let country, currency, symbol, value = 1, local, foreign, from, to , output, exchangeRate, name, unit,
 	exchangeData, countries, localCurrency, foreignCurrency, blob = "", attrs, option, names = [], object = {},
 	localGroup = getById("local"), 
 	foreignGroup = getById("foreign"),
@@ -21,15 +21,18 @@ Techie("#btn", function($,btn, body, head, sapi, _, w, log, stringify, stringify
 	update();//Update the currency symbols on page load
 	fetch("https://free.currencyconverterapi.com/api/v5/countries").then((data) =>{return data.json();}).then((data) =>{
 		countries = data["results"];
-		for(country in countries){
+		for(name in countries){
 			attrs = "";
-			entity = countries[country];
-			for(unit in entity){
-				attrs = attrs.concat(` ${unit}="${entity[unit]}" `);
-			} /*currencyId*/
-			option = "<option".concat(` ${attrs}> ${entity["currencySymbol"]} - ${entity["currencyId"]} ${entity["name"]} </option>`);
-			names.push(entity["name"]);
-			object[entity["name"]] = option;
+			country = countries[name]; 
+			console.clear();
+// stringifyAll(country)
+			for(unit in country){
+				attrs = attrs.concat(` ${unit}="${country[unit]}" `);
+
+			} 
+			option = "<option".concat(` ${attrs}> ${country["currencySymbol"]} - ${country["currencyId"]} ${country["name"]} </option>`);
+			names.push(country["name"]);
+			object[country["name"]] = option;
 		}
 		names = names.sort(function(a, b){return a > b;});
 		
@@ -41,7 +44,7 @@ Techie("#btn", function($,btn, body, head, sapi, _, w, log, stringify, stringify
 	localGroup[ "selectedIndex" ] = getById("US")["index"];
 	foreignGroup[ "selectedIndex" ] = getById("NG")["index"];
 	update();
-	}).catch((error) => {console.error(`Whoops! Can't get the list of countries. What nagged? ${error}`);})
+	}).catch((error) => {console.error(`Whoops! Can't get the list of countries. Why? ${error}`);})
 	
 		function init(e){ //Arrow functions cannot be hoisted because they are expressions
 	value = inputPoint.value || value;
@@ -51,8 +54,8 @@ Techie("#btn", function($,btn, body, head, sapi, _, w, log, stringify, stringify
 	foreignCurrency = foreign.getAttribute("currencyid");
 	from = encodeURIComponent(localCurrency);
 	to = encodeURIComponent(foreignCurrency);
-  const url = 'https://free.currencyconverterapi.com/api/v5/convert?q=' + from + '_' + to + '&compact=y';
-	local_symbol = foreign.getAttribute("currencysymbol");
+  const url = 'https://free.currencyconverterapi.com/api/v5/convert?q=' + from + '_' + to + '&compact=y',
+	local_symbol = foreign.getAttribute("currencysymbol"),
 	foreign_symbol = local.getAttribute("currencysymbol");
 	local_symbolDiv.textContent = local_symbol; 
 	foreign_symbolDiv.textContent = foreign_symbol; 
@@ -63,7 +66,7 @@ Techie("#btn", function($,btn, body, head, sapi, _, w, log, stringify, stringify
     valueDiv.textContent = output;
     update();
   }).catch((error) => {
-  	console.error(`Oh no! We can't fetch currency data. What nagged? ${error} `);
+  	console.error(`Oh no! We can't fetch currency data. Why? ${error} `);
   });
 		}
 		function getById(id){return document.getElementById(id);}
