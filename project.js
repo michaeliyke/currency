@@ -30,7 +30,7 @@ Techie("#btn", function($,btn, body, head, sapi, _, w, Log, stringify, stringify
 				attrs = attrs.concat(` ${unit}="${country[unit]}" `);
 
 			} 
-			option = "<option".concat(` ${attrs}> ${country["currencySymbol"]} - ${country["currencyId"]} ${country["name"]} </option>`);
+			option = "<option".concat(` ${attrs}> ${country["currencySymbol"]} - ${country["name"]}(${country["currencyId"]}) </option>`);
 			names.push(country["name"]);
 			object[country["name"]] = option;
 		}

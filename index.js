@@ -4,16 +4,7 @@
 	navigator.serviceWorker.register("/ALC/Project/sw.js").then((event) => {
 		console.log(`Success! service worker now monitors ${event.scope}`);
 	}).catch((error) =>{
-		console.log(`Whoops! What happend?  ${error} `);
+		console.error(`Whoops! Service worker could not be installed. See Why?  ${error} `);
 	});
+
 }(this));
-
-
-/*
-self.addEventLister("'install", function(event){
-
-}).addEventLister("activate", function(event){
-
-}).addEventLister("fetch", function(event){
-
-});*/
