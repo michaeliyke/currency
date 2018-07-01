@@ -31,25 +31,12 @@
 	 		}))
 	 	}))
 	 })*/
-
+/*	 michaeliykeDEMIKADO!
+*/
 	 self.addEventListener("fetch", (event) => {
 	 	var requestUrl = new URL(event.request.url);
 
   if (requestUrl.origin != location.origin) { return; }
-	 /*	var ret;
-	 	const path = new URL(event.request.url);
-	 	 return caches.open(cacheVersion).then(function(cache) {
-	 		return cache.match(event.request.url).then(function(response) {
-	 			var fetched = fetch(event.request).then(function(serverResponse) {
-	 				cache.put(event.request.url, serverResponse.clone());
-	 				return serverResponse;
-	 			});
-	 			return response || fetched;
-	 		});
-	 	});
-	 	 // return event.respondWith(ret);
-	 });*/
-
 	return event.respondWith(caches.match(event.request).then(function(response) {
 
 	 	var fetched = fetch(event.request).then(function(serverResponse) {
@@ -65,4 +52,17 @@
 	 }));
 });
 
+
+function serve(request) {
+  var storageUrl = request.url.replace(/-\d+px\.jpg$/, '');
+  return caches.open(cacheVersion).then(function(cache) {
+    return cache.match(url).then(function(response) {
+      var fetched = fetch(request).then(function(networkResponse) {
+        cache.put(storageUrl, networkResponse.clone());
+        return networkResponse;
+      });
+      return response || fetched;
+    });
+  });
+}
 }());
