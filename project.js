@@ -1,5 +1,6 @@
-Techie("button[value=Load], #btn", function($,btn, body, head, sapi, _, w, log, stringify, stringifyAll){
-	let country, currency, symbol, value = 1, local, foreign, from, to , index = 0, output, exchangeRate, 
+"use strict";
+Techie("#btn", function($,btn, body, head, sapi, _, w, log, stringify, stringifyAll){ //With arrow function here, the "this" context reference will be lost. Let's live it alone
+	let country, currency, symbol, value = 1, local, foreign, from, to , output, exchangeRate, 
 	exchangeData, countries, localCurrency, foreignCurrency, blob = "", attrs, option, names = [], object = {},
 	localGroup = getById("local"), 
 	foreignGroup = getById("foreign"),
@@ -7,11 +8,7 @@ Techie("button[value=Load], #btn", function($,btn, body, head, sapi, _, w, log, 
 	foreign_symbolDiv = getById("foreign-symbol"),
 	valueDiv = getById("output"),
 	inputPoint = getById("value");
-	index++; //index is just for debugging incrementally
-	// https://free.currencyconverterapi.com/api/v5/currencies
-	// https://free.currencyconverterapi.com/api/v5/countries
-
-	function update(){
+	const update = () =>{
 		inputPoint.value = "";
 		inputPoint.placeholder = "type 12850";
 		inputPoint.focus();
@@ -22,7 +19,7 @@ Techie("button[value=Load], #btn", function($,btn, body, head, sapi, _, w, log, 
 	this.click(init);
 	 $("select").change(update).enter(init);;  //update currency symbol upon selection
 	update();//Update the currency symbols on page load
-	fetch("https://free.currencyconverterapi.com/api/v5/countries").then(function(data){return data.json();}).then(function(data){
+	fetch("https://free.currencyconverterapi.com/api/v5/countries").then((data) =>{return data.json();}).then((data) =>{
 		countries = data["results"];
 		for(country in countries){
 			attrs = "";
@@ -44,37 +41,34 @@ Techie("button[value=Load], #btn", function($,btn, body, head, sapi, _, w, log, 
 	localGroup[ "selectedIndex" ] = getById("US")["index"];
 	foreignGroup[ "selectedIndex" ] = getById("NG")["index"];
 	update();
-	}).catch(function(error) {
-		console.error(error)
-	})
+	}).catch((error) => {console.error(`Whoops! Can't get the list of countries. What nagged? ${error}`);})
 	
-		function init(e){
-			value = inputPoint.value || value;
+		function init(e){ //Arrow functions cannot be hoisted because they are expressions
+	value = inputPoint.value || value;
 	local = localGroup[localGroup.selectedIndex];
 	localCurrency = local.getAttribute("currencyid");
 	foreign = foreignGroup[foreignGroup.selectedIndex]; 
 	foreignCurrency = foreign.getAttribute("currencyid");
 	from = encodeURIComponent(localCurrency);
 	to = encodeURIComponent(foreignCurrency);
-  var url = 'https://free.currencyconverterapi.com/api/v5/convert?q=' + from + '_' + to + '&compact=y';
-	local_symbol = foreign.getAttribute("currencysymbol");////Important////
-	foreign_symbol = local.getAttribute("currencysymbol");////Important////
+  const url = 'https://free.currencyconverterapi.com/api/v5/convert?q=' + from + '_' + to + '&compact=y';
+	local_symbol = foreign.getAttribute("currencysymbol");
+	foreign_symbol = local.getAttribute("currencysymbol");
 	local_symbolDiv.textContent = local_symbol; 
 	foreign_symbolDiv.textContent = foreign_symbol; 
-  fetch(url).then(function(response){return response.json();}).then(function(data){
+  fetch(url).then((response) => {return response.json();}).then((data) => {
   	exchangeData = data[(localCurrency  + "_" + foreignCurrency ).toUpperCase()];
   	exchangeRate = exchangeData["val"] || 0;
-  	total = (value * exchangeRate);
-    output =  Math.round( total * 100) / 100; //0.002793
+    output =  Math.round( (value * exchangeRate) * 100) / 100; //0.002793
     valueDiv.textContent = output;
     update();
-  }).catch(function(error){
-  	console.error("Something happened" + error);
+  }).catch((error) => {
+  	console.error(`Oh no! We can't fetch currency data. What nagged? ${error} `);
   });
 		}
 		function getById(id){return document.getElementById(id);}
-		function getByAttr(attr){var element;pt.walk(document, function(){if (this.getAttribute(attr)) element = this;});return element;}
+		function getByAttr(attr){var element;pt.walk(document, () => {if (this.getAttribute(attr)) element = this;});return element;}
 
 	
-	})
+	});
 
