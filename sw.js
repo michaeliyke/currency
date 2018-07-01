@@ -37,11 +37,11 @@
 	 	var requestUrl = new URL(event.request.url);
 
   if (requestUrl.origin != location.origin) { return; }
-	return event.respondWith(caches.match(event.request).then(function(response) {
+	return event.respondWith(caches.match(event.request).then((response) => {
 
-	 	var fetched = fetch(event.request).then(function(serverResponse) {
-	 		caches.open(cacheVersion).then(function(cache) {
-	 			cache.match(event.request.url).then(function(response) {
+	 	let fetched = fetch(event.request).then((serverResponse) => {
+	 		caches.open(cacheVersion).then((cache) => {
+	 			cache.match(event.request.url).then((response) => {
 	 				cache.put(event.request.url, serverResponse.clone());
 	 			});
 	 		});
@@ -55,9 +55,9 @@
 
 function serve(request) {
   var storageUrl = request.url.replace(/-\d+px\.jpg$/, '');
-  return caches.open(cacheVersion).then(function(cache) {
-    return cache.match(url).then(function(response) {
-      var fetched = fetch(request).then(function(networkResponse) {
+  return caches.open(cacheVersion).then((cache) => {
+    return cache.match(url).then((response) => {
+      var fetched = fetch(request).then((networkResponse) => {
         cache.put(storageUrl, networkResponse.clone());
         return networkResponse;
       });

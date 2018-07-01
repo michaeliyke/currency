@@ -24,8 +24,6 @@ Techie("#btn", function($,btn, body, head, sapi, _, w, Log, stringify, stringify
 		for(name in countries){
 			attrs = "";
 			country = countries[name]; 
-			console.clear();
-// stringifyAll(country)
 			for(unit in country){
 				attrs = attrs.concat(` ${unit}="${country[unit]}" `);
 
@@ -34,7 +32,7 @@ Techie("#btn", function($,btn, body, head, sapi, _, w, Log, stringify, stringify
 			names.push(country["name"]);
 			object[country["name"]] = option;
 		}
-		names = names.sort(function(a, b){return a > b;});
+		names = names.sort((a, b) =>{return a > b;});
 		
 		for(let name of names){
 			blob = blob.concat(object[name]);
