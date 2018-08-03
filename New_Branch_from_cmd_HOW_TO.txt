@@ -1,9 +1,15 @@
 clone htttps://github.com/michaeliyke/currency.git
-git checkout New_Branch_from_cmd_HOW_TO
-git add :/
-commit -a -m "Just now"
+git rm -rf . //Remove everything in current directory. Lets start clean
+git checkout New_Branch_from_cmd_HOW_TO //Create branch offline here first and checkout into it
+
+
+#Create some files please!
 touch New_Branch_from_cmd_HOW_TO.txt
 touch new.html
 touch style.css
+
+#Let's get to work
+git add -A #Add everything I have
+commit -a -m "Just now"
 git push origin New_Branch_from_cmd_HOW_TO:New_Branch_from_cmd_HOW_TO #Viola! We did it. 
 #Go to my account and see the new branch called New_Branch_from_cmd_HOW_TO blinking well there.
