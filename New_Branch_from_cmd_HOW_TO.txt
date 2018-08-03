@@ -1,0 +1,9 @@
+clone htttps://github.com/michaeliyke/currency.git
+git checkout New_Branch_from_cmd_HOW_TO
+git add :/
+commit -a -m "Just now"
+touch New_Branch_from_cmd_HOW_TO.txt
+touch new.html
+touch style.css
+git push origin New_Branch_from_cmd_HOW_TO:New_Branch_from_cmd_HOW_TO #Viola! We did it. 
+#Go to my account and see the new branch called New_Branch_from_cmd_HOW_TO blinking well there.
