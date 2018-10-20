@@ -1,4 +1,5 @@
 "use strict";
+alert(this);
 Techie("#btn", function($,btn, body, head, sapi, _, w, Log, stringify, stringifyAll){ //With arrow function here, the "this" context reference will be lost. Let's live it alone
 	alert(this.parameters)
 	let country, currency, symbol, value = 1, local, foreign, from, to , output, exchangeRate, name, unit,
