@@ -1,3 +1,3 @@
 ;(function(global) {
-     import idb from 'idb';
+     // import idb from 'idb';
 }(this));
