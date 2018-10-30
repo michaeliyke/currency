@@ -1,7 +1,6 @@
 "use strict";
-alert(this);
-Techie("#btn", function($,btn, body, head, sapi, _, w, Log, stringify, stringifyAll){ //With arrow function here, the "this" context reference will be lost. Let's live it alone
-	alert(this.parameters)
+Techie("#btn", function($, btn, body, head, sapi, _, w, Log, stringify, stringifyAll){ //With arrow function here, the "this" context reference will be lost. Let's live it alone
+	// alert(this.parameters)
 	let country, currency, symbol, value = 1, local, foreign, from, to , output, exchangeRate, name, unit,
 	exchangeData, countries, localCurrency, foreignCurrency, blob = "", attrs, option, names = [], object = {},
 	localGroup = getById("local"), 
@@ -16,7 +15,7 @@ Techie("#btn", function($,btn, body, head, sapi, _, w, Log, stringify, stringify
 		inputPoint.focus();
 		foreign_symbolDiv.textContent = localGroup[localGroup.selectedIndex].getAttribute("currencysymbol")
 		local_symbolDiv.textContent = foreignGroup[foreignGroup.selectedIndex].getAttribute("currencysymbol");
-	}
+	};
 	
 	this.click(init);
 	 $("select").change(update).enter(init);;  //update currency symbol upon selection
