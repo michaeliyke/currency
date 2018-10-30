@@ -1,10 +1,105 @@
 
-#btn:hover {
-    cursor: pointer;
+html, body {
+    border: medium none;
+    color: #444444;
+    font-family: Roboto Condensed,serif;
+    font-size: 1em;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+* {
+    font-weight: lighter;
+}
+#body {
+    background-color: #cccccc;
+    border: 2px solid #ab9b7a;
+    border-radius: 3px;
+    margin: 0 auto;
+    padding: 2em;
+    width: 80%;
+}
+header {
+    color: #ffffff;
+    padding: 2em;
+    position: relative;
+    text-align: center;
+    width: 83%;
+    margin: 0 auto;
+}
+hr {
+    border-radius: 100%;
+    border-width: 2px;
+    color: #f3ddae;
+    display: block;
+    margin-top: -1em;
+}
+label {
+    padding: 0.2em;
+}
+input, select {
+    background-color: #f2f2f2;
+    color: #4f5855;
+    padding: 0.4em;
+    text-align: left;
+}
+input {
+    border: medium none;
+    border-radius: 15px;
+}
+select {
+    border: medium none;
+    border-radius: 15px;
+}
+nav ul li a:hover {
+    text-decoration: underline;
+}
+nav {
+    margin-bottom: 6em;
+    position: relative;
+    top: -23%;
+}
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+    margin: 0 auto;
+}
+nav ul li {
+    list-style: outside none none;
+}
+nav ul li a {
+    border: medium none;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 0.4em;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out 0.1s;
+}
+nav ul li a:active, nav ul li a:focus {
+    border: medium none;
+}
+#container {
+    background-color: #2ab9b9;
+    background-image: url("computer.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+#content {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+}
+#input-area {
+    display: flex;
+    justify-content: space-around;
 }
 #btn:hover {
     background-color: #abbbbb;
     color: #ffffff;
+    cursor: pointer;
 }
 #btn {
     background-color: #9b9b9b;
@@ -16,100 +111,4 @@
     outline: 1px none #ff0000;
     padding: 4px;
     width: 5em;
-}
-#body {
-    background-color: #cccccc;
-    left: 15%;
-    padding: 2em;
-    position: relative;
-    width: 67%;
-}
-#body > *:not(#btn) {
-    display: inline;
-}
-nav ul li {
-    float: left;
-    height: 27px;
-    list-style: outside none none;
-}
-hr {
-    border-width: 2px;
-    display: block;
-    margin-top: -1em;
-    color: #F3DDAE;
-    border-radius: 100%;
-}
-#container > header {
-    color: #ffffff;
-    left: 6%;
-    padding: 2em;
-    position: relative;
-    text-align: center;
-    width: 83%;
-}
-#container {
-    background-image: url("computer.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-}
-html, body {
-    border: 0 none;
-    color: #444444;
-    font-family: Roboto Condensed, serif;
-    height: 100%;
-    margin: 0;
-    outline: 0 none;
-    padding: 0;
-    width: 100%;
-    font-size: 100%;
-}
-label {
-    padding: 0.2em;
-}
-#container #body {
-    display: block;
-}
-* {
-    font-weight: lighter;
-}
-input, select {
-    background-color: #f2f2f2;
-    color: #4f5855;
-    padding: 0.4em;
-    text-align: left;
-}
-h1 {
-    clear: left;
-}
-nav ul li a {
-    border: medium none;
-    border-radius: 8px;
-    color: #ffffff;
-    display: block;
-    margin: -1em 1em 1em;
-    outline: medium none;
-    padding: 12px 10px;
-    text-decoration: none;
-}
-nav ul li a:hover {
-    background-color: #006fb3;
-}
-nav {
-    left: 25%;
-    margin-bottom: 6em;
-    position: relative;
-    top: -23%;
-}
-nav ul li a:active {
-    height: 32px;
-    padding-top: 10px;
-}
-input {
-    border: medium none;
-}
-select {
-    border: medium none;
-    width: 15em;
 }
