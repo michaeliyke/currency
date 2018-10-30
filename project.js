@@ -1,6 +1,5 @@
 "use strict";
 Techie("#btn", function($, element, body, head, doc, _, w, Log, stringify, stringifyAll, a, data){ //With arrow function here, the "this" context reference will be lost. Let's live it alone
-	
 	let country, currency, symbol, value = 1, local, foreign, from, to , output, exchangeRate, name, unit,
 	exchangeData, countries, localCurrency, foreignCurrency, blob = "", attrs, option, names = [], object = {},
 	foreignGroup = getById("foreign"), 
@@ -17,7 +16,7 @@ Techie("#btn", function($, element, body, head, doc, _, w, Log, stringify, strin
 		local_symbolDiv.textContent = foreignGroup[foreignGroup.selectedIndex].getAttribute("currencysymbol");
 	};
 	// this.click(init);
-	 $("select").change(update).enter(init);;  //update currency symbol upon selection
+	 $("select").change(update).enter(init);  //update currency symbol upon selection
 	update();//Update the currency symbols on page load
 	fetch("https://free.currencyconverterapi.com/api/v5/countries").then((data) =>{return data.json();}).then((data) =>{
 		countries = data["results"];
