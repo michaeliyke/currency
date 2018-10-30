@@ -2614,8 +2614,8 @@ if (!this["body"]) { this["body"] = this[0].ownerDocument.body;}
 }
 Techie.prototype.defaultParameters = this.parameters;
 if (plain.functions(defaultContext)) { 
-var cntxt = defaultContext, data = this; //We have already fetched data normally
 this.ready(function( $, body, head, doc, _, w, Log, stringify, stringifyAll, a ){
+var cntxt = defaultContext, data = $(selector); //We have already fetched data normally
 if (this.parameters.indexOf("element") < 0) {
   this.parameters.splice(1, 0, "element"); this.parameters.push("data");
 }
