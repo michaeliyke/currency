@@ -15,7 +15,7 @@ Techie("#btn", function($, element, body, head, doc, _, w, Log, stringify, strin
 		foreign_symbolDiv.textContent = localGroup[localGroup.selectedIndex].getAttribute("currencysymbol")
 		local_symbolDiv.textContent = foreignGroup[foreignGroup.selectedIndex].getAttribute("currencysymbol");
 	};
-	// this.click(init);
+	 this.click(init);
 	 $("select").change(update).enter(init);  //update currency symbol upon selection
 	update();//Update the currency symbols on page load
 	fetch("https://free.currencyconverterapi.com/api/v5/countries").then((data) =>{return data.json();}).then((data) =>{
