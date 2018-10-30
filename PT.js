@@ -17,6 +17,7 @@ if (   !(machineInfo && machineInfo.noIssues)   ) {
 throw new TypeError("Sorry, some issus were encountered while loading core files.");
 }
 global.Techie = global.pt = factory.call( stub, global, machineInfo, factor, global.document, factory ); 
+console.clear();
 console.info("Techie JavaScript API working perfectly");
 } 
 }
@@ -2527,7 +2528,7 @@ constructor: Techie,
 
 
 Techie: function PT(selector, context) { 
-var funcs, string, object, others, index = 0, str = ({}).toString.call(selector), 
+ var funcs, string, object, others, index = 0, str = ({}).toString.call(selector), 
 prevObject, nextObject, nodes = [], length, toString, wrapper, leng = 0;
 if (typeof defaultContext === "undefined") {
   var defaultContext = context;
@@ -2580,7 +2581,7 @@ context = !context ? document: isList(context) && context[0].querySelectorAll ?
 context[0]: context.querySelectorAll ? context : document;
 if (selector [0] === '<' && selector[selector.length - 1] === ">" && selector.length >= 3 ) {
             nodes = [this.createFrag(selector, context == sapi ? null: context)];
-} else if (Techie.PT.matchesSelector(context, selector)) { 
+} else if (Techie.PT.matchesSelector(context, selector)) {
             nodes = slice.call(context.querySelectorAll(selector));
 } else  if (Techie.PT.matchesSelector( context, "."+selector)) {
 console.warn("Wrong Techie syntax. It ought to be " + "." + selector);
@@ -2596,7 +2597,7 @@ nodes = slice.call(selector);
 others = slice.call(arguments); length = others.length; Techie.PT.DefineProperty( this, "length", length, false );
 while ( length ) { this[ index ] = others[ index ]; length--; index++; } index = 0; return this;
 }
-if (!(nodes[0] && nodes[0].nodeType)) { return this;}
+if (!(nodes[0] && nodes[0].nodeType) && Object.prototype.toString.call(selector) != "[object String]") { return this;}
 var That = this
 forEach(function( node, index, object ) { 
 this[index] = node;
@@ -4396,11 +4397,11 @@ return false;
 }
 },
 
-matchesSelector: this.matchesSelector || function matchesSelector(element, selector){ 
+matchesSelector: function matchesSelector(element, selector){ 
 //clunky workaround. serious test required to standardize.
 if (element == null ) {
 return false;
-} /*else if ( element && element.matches) {
+} else if ( element && element.matches) {
 return element.matches(selector);
 } else if ( element && element.matchesSelector){ 
 return element.matchesSelector(selector);
@@ -4410,7 +4411,7 @@ return element.msMatchesSelector(selector);
 return element.mozMatchesSelector(selector);
 } else if ( element && element.webkitMatchesSelector){ 
 return element.webkitMatchesSelector(selector);
-} */else { 
+} else { 
 try { return element.querySelector(selector) != null; }catch (err) {return false;}
 }
 },
