@@ -1,23 +1,22 @@
 "use strict";
-Techie("#btn", function($, btn, body, head, sapi, _, w, Log, stringify, stringifyAll){ //With arrow function here, the "this" context reference will be lost. Let's live it alone
-	// alert(this.parameters)
+Techie("#btn", function($, element, body, head, doc, _, w, Log, stringify, stringifyAll, a, data){ //With arrow function here, the "this" context reference will be lost. Let's live it alone
+	
 	let country, currency, symbol, value = 1, local, foreign, from, to , output, exchangeRate, name, unit,
 	exchangeData, countries, localCurrency, foreignCurrency, blob = "", attrs, option, names = [], object = {},
-	localGroup = getById("local"), 
-	foreignGroup = getById("foreign"),
+	foreignGroup = getById("foreign"), 
+	localGroup = getById("local"),
 	local_symbolDiv = getById("local-symbol"),
 	foreign_symbolDiv = getById("foreign-symbol"),
 	valueDiv = getById("output"),
 	inputPoint = getById("value");
 	const update = () =>{
 		inputPoint.value = "";
-		inputPoint.placeholder = "type 12850";
+		inputPoint.placeholder = "value to convert";
 		inputPoint.focus();
 		foreign_symbolDiv.textContent = localGroup[localGroup.selectedIndex].getAttribute("currencysymbol")
 		local_symbolDiv.textContent = foreignGroup[foreignGroup.selectedIndex].getAttribute("currencysymbol");
 	};
-	
-	this.click(init);
+	// this.click(init);
 	 $("select").change(update).enter(init);;  //update currency symbol upon selection
 	update();//Update the currency symbols on page load
 	fetch("https://free.currencyconverterapi.com/api/v5/countries").then((data) =>{return data.json();}).then((data) =>{
@@ -54,8 +53,8 @@ Techie("#btn", function($, btn, body, head, sapi, _, w, Log, stringify, stringif
 	from = encodeURIComponent(localCurrency);
 	to = encodeURIComponent(foreignCurrency);
   const url = 'https://free.currencyconverterapi.com/api/v5/convert?q=' + from + '_' + to + '&compact=y',
-	local_symbol = foreign.getAttribute("currencysymbol"),
-	foreign_symbol = local.getAttribute("currencysymbol");
+	local_symbol = local.getAttribute("currencysymbol"),
+	foreign_symbol = foreign.getAttribute("currencysymbol");
 	local_symbolDiv.textContent = local_symbol; 
 	foreign_symbolDiv.textContent = foreign_symbol; 
   fetch(url).then((response) => {return response.json();}).then((data) => {
