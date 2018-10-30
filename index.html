@@ -30,43 +30,28 @@
   <hr>
 </header>
 <div id="body">
-  <h2>Convert currency:<span id="foreign-symbol">$</span> <input id="value" type="text" placeholder="Enter some value" size="15"></h2>
-  
-  <label for="to">From foreign</label>
-    <select id="local">
+<div id="content">
+ <div>
+    <h2>Convert currency:</h2>
+ </div>
+ <div id="input-area">
+   <div class="input-flex medium"> 
+   <span id="foreign-symbol class="inner-lable">$ </span> <input class="inner-flex" id="value" type="text" placeholder="Enter some value" size="15"> </div>
+  <div class="input-flex large">
+  <span class="inner-lable">From foreign</span>
+    <select id="local" class="inner-flex">
     <option id="TH" name="Thailand" currencysymbol="฿" currencyname="Thai baht" currencyid="THB" alpha3="THA"> ฿ - THB Thailand </option>
-<option id="ES" name="Spain" currencysymbol="€" currencyname="European euro" currencyid="EUR" alpha3="ESP"> € - EUR Spain </option>
-<option id="US" name="United States of America" currencysymbol="$" currencyname="United States dollar" currencyid="USD" alpha3="USA"> $ - USD United States of America </option>
-<option selected="selected" id="GB" name="United Kingdom" currencysymbol="£" currencyname="British pound" currencyid="GBP" alpha3="GBR"> £ - GBP United Kingdom </option>
-<option id="JP" name="Japan" currencysymbol="¥" currencyname="Japanese yen" currencyid="JPY" alpha3="JPN"> ¥ - JPY Japan </option>
-<option id="CN" name="China" currencysymbol="¥" currencyname="Chinese renminbi" currencyid="CNY" alpha3="CHN"> ¥ - CNY China </option>
-<option id="GH" currencysymbol="₵" alpha3="GHA" name="Ghana" currencyname="Ghanaian cedi" currencyid="GHS"> ₵ - GHS Ghana </option>
-<option id="SL" currencysymbol="Le" alpha3="SLE" name="Sierra Leone" currencyname="Sierra Leonean leone" currencyid="SLL"> Le - SLL Sierra Leone </option>
-<option id="GR" name="Greece" currencysymbol="€" currencyname="European euro" currencyid="EUR" alpha3="GRC"> € - EUR Greece </option>
-<option id="MK" name="Macedonia (Former Yug. Rep.)" currencysymbol="ден" currencyname="Macedonian denar" currencyid="MKD" alpha3="MKD"> ден - MKD Macedonia (Former Yug. Rep.) </option>
-<option id="NG" name="Nigeria" currencysymbol="₦" currencyname="Nigerian naira" currencyid="NGN" alpha3="NGA"> ₦ - NGN Nigeria </option>
 </select>
-  <label for="from"> To local</label>
-  <select  id="foreign"> 
-
-<option id="TH" name="Thailand" currencysymbol="฿" currencyname="Thai baht" currencyid="THB" alpha3="THA"> ฿ - THB Thailand </option>
-<option id="ES" name="Spain" currencysymbol="€" currencyname="European euro" currencyid="EUR" alpha3="ESP"> € - EUR Spain </option>
-<option selected="selected" id="US" name="United States of America" currencysymbol="$" currencyname="United States dollar" currencyid="USD" alpha3="USA"> $ - USD United States of America </option>
-<option id="GB" name="United Kingdom" currencysymbol="£" currencyname="British pound" currencyid="GBP" alpha3="GBR"> £ - GBP United Kingdom </option>
-<option id="JP" name="Japan" currencysymbol="¥" currencyname="Japanese yen" currencyid="JPY" alpha3="JPN"> ¥ - JPY Japan </option>
-<option id="CN" name="China" currencysymbol="¥" currencyname="Chinese renminbi" currencyid="CNY" alpha3="CHN"> ¥ - CNY China </option>
-<option id="GH" currencysymbol="₵" alpha3="GHA" name="Ghana" currencyname="Ghanaian cedi" currencyid="GHS"> ₵ - GHS Ghana </option>
-<option id="SL" currencysymbol="Le" alpha3="SLE" name="Sierra Leone" currencyname="Sierra Leonean leone" currencyid="SLL"> Le - SLL Sierra Leone </option>
-<option id="GR" name="Greece" currencysymbol="€" currencyname="European euro" currencyid="EUR" alpha3="GRC"> € - EUR Greece </option>
-<option id="MK" name="Macedonia (Former Yug. Rep.)" currencysymbol="ден" currencyname="Macedonian denar" currencyid="MKD" alpha3="MKD"> ден - MKD Macedonia (Former Yug. Rep.) </option>
+</div>
+  <div class="input-flex large"> <span class="inner-lable">To local</span>
+  <select  id="foreign" class="inner-flex" > 
 <option id="NG" name="Nigeria" currencysymbol="₦" currencyname="Nigerian naira" currencyid="NGN" alpha3="NGA"> ₦ - NGN Nigeria </option>
-
-
-
-  
   </select>
+  </div>
+  </div>
 <div id="result">
   <h3><button id="btn">Convert</button> <big id="local-symbol">£</big>: <span id="output">00</span></h3>
+</div>
 </div>
 </div>
 </div>
