@@ -1,0 +1,64 @@
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) { 
+#input-area {
+    display: flex;
+    flex-flow: column;
+}
+.input-flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+ 
+  margin-bottom: 1em
+}
+.inner-flex{
+  flex-basis: 70%;
+}
+select, input{
+  width: 45%;
+}
+hr{
+  width: 90%;
+    margin: auto auto;
+    margin-left: -4%;
+}
+header {
+    color: #ffffff;
+    padding: 2em;
+    position: relative;
+    text-align: center;
+    width: 96%;
+    margin: 0 auto;
+}
+nav ul li a:hover {
+    text-decoration: underline;
+}
+nav {
+    width: 80%;
+    margin-bottom: 6em;
+    position: relative;
+    top: -23%;
+    left: -1em;
+}
+nav ul {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+}
+nav ul li {
+    list-style: outside none none;
+}
+nav ul li a {
+    border: medium none;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 0.4em;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out 0.1s;
+}
+nav ul li a:active, nav ul li a:focus {
+    border: medium none;
+}
+}
+
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) { /* Styles */ }
