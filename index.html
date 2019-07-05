@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="mobile.css" />
   <script type="text/JavaScript" make="Prize" Prize="Techie" src="PT.js"></script>
   <script type="text/javascript" src="project.js"></script>
-  <title>All counntries | Currency converter </title>
+  <title>All counntries Currency converter | Convert Currencies </title>
 </head>
 <body>
 <!-- Body -->
@@ -18,32 +18,39 @@
   <header>
 <nav>
 <ul>
-<li><a href="#" title="">How It Works</a></li>
-<li><a href="#" title="">About The data</a></li>
-<li><a href="#" title="">Contact The Author</a></li>
+<li><a href="index.html" class="current-page" title="">Home</a></li>
+<li><a href="guide.html" title="">How It Works</a></li>
+<li><a href="about.html" title="">About The data</a></li>
+<li><a href="http://ux.michaeliyke.ml/" title="" onclick="return confirm('Link is going to another site. Do you wish to continue?');">Contact The Author</a></li>
+        <li class="terms-of-service"><a href="terms.html" title="">Terms of service</a></li>
+
 </ul>
 </nav>
   <h1>Convert Currency in one click</h1>
   <hr>
 </header>
 <div id="body">
-<div id="content">
- <div>
+<div>
+ <div id="rates-info">
     <h2>Convert currency:</h2>
+    <p id="foreign-rate" class="rate"><span>United States(USD)</span><span>0.0</span></p>
+    <p id="local-rate" class="rate"><span>Nigeria(NGN)</span><span>0.0</span></p>
  </div>
  <div id="input-area">
    <div class="input-flex medium"> 
    <span id="foreign-symbol" class="inner-lable">$ </span> <input class="inner-flex" id="value" type="text" placeholder="Enter some value" size="15"> </div>
-  <div class="input-flex large">
-  <span class="inner-lable">Conver From(Foreign)</span>
-    <select id="local" class="inner-flex">
-    <option id="TH" name="Thailand" currencysymbol="฿" currencyname="Thai baht" currencyid="THB" alpha3="THA"> ฿ - THB Thailand </option>
-</select>
-</div>
-  <div class="input-flex large"> <span class="inner-lable">Convert To(Local)</span>
-  <select  id="foreign" class="inner-flex" > 
+  
+  <div class="input-flex large"> <span class="inner-lable">Convert from(Local)</span>
+  <select  id="local" class="inner-flex" > 
 <option id="NG" name="Nigeria" currencysymbol="₦" currencyname="Nigerian naira" currencyid="NGN" alpha3="NGA"> ₦ - NGN Nigeria </option>
   </select>
+  </div>
+  <div class="input-flex large">
+    <span class="inner-lable">Convert To (Foreign)</span>
+    <select id="foreign" class="inner-flex">
+      <option id="TH" name="Thailand" currencysymbol="฿" currencyname="Thai baht" currencyid="THB" alpha3="THA"> ฿ - THB
+        Thailand </option>
+    </select>
   </div>
   </div>
 <div id="result">

@@ -13,19 +13,19 @@ html, body {
 }
 #body {
     background-color: #cccccc;
-    border: 2px solid #ab9b7a;
-    border-radius: 3px;
+    border-radius: 0 0 50%;
+    box-shadow: 0 0 30px #ffffff inset;
     margin: 0 auto;
-    padding: 2em;
+    padding: 3em;
     width: 80%;
 }
 header {
     color: #ffffff;
+    margin: 0 auto;
     padding: 2em;
     position: relative;
     text-align: center;
     width: 83%;
-    margin: 0 auto;
 }
 hr {
     border-radius: 100%;
@@ -45,14 +45,21 @@ input, select {
 }
 input {
     border: medium none;
-    border-radius: 15px;
+    border-radius: 15px 0 0;
 }
 select {
-    border: medium none;
-    border-radius: 15px;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: currentcolor;
+    border-image: none;
+    border-radius: 15px 0 0;
+    border-style: none solid none none;
+    border-width: medium 1px medium medium;
 }
 nav ul li a:hover {
-    text-decoration: underline;
+    color: #b3763f;
 }
 nav {
     margin-bottom: 6em;
@@ -62,8 +69,8 @@ nav {
 nav ul {
     display: flex;
     justify-content: space-around;
-    width: 40%;
     margin: 0 auto;
+    width: 55%;
 }
 nav ul li {
     list-style: outside none none;
@@ -72,6 +79,7 @@ nav ul li a {
     border: medium none;
     border-radius: 4px;
     color: #ffffff;
+    font-size: 120%;
     padding: 0.4em;
     text-decoration: none;
     transition: all 0.1s ease-in-out 0.1s;
@@ -98,11 +106,12 @@ nav ul li a:active, nav ul li a:focus {
 }
 #btn:hover {
     background-color: #abbbbb;
+    border: 1px solid #ff0000;
     color: #ffffff;
     cursor: pointer;
 }
 #btn {
-    background-color: #9b9b9b;
+    background-color: #e7a152;
     border: medium none;
     border-radius: 4px;
     color: #ffffff;
@@ -111,4 +120,59 @@ nav ul li a:active, nav ul li a:focus {
     outline: 1px none #ff0000;
     padding: 4px;
     width: 5em;
+}
+#rates-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    width: 81%;
+}
+#rates-info .rate {
+    align-self: center;
+    color: #c66c10;
+}
+#rates-info #foreign-rate {
+    flex-basis: 15%;
+}
+
+#content {
+    background-color: #293438;
+    color: #ffffff;
+    font-size: 120%;
+    line-height: 1.7;
+    margin: -1em auto 0;
+    padding: 5em;
+    position: relative;
+    right: -1em;
+    width: 65%;
+}
+#content a {
+    color: #95e7f4;
+    display: inline;
+    text-decoration: none;
+}
+#content a:hover {
+    color: #008cc4;
+}
+#content ol {
+    list-style-position: inside;
+    list-style-type: upper-roman;
+}
+.terms-of-service a {
+    color: #214365;
+}
+.terms-of-service {
+    font-size: 12px;
+    align-self: center;
+}
+.terms-of-service a:hover {
+    color: #654321;
+}
+
+
+.current-page, a.current-page {
+    color: #f7ba83;
+    cursor: default;
+    font-family: Georgia;
+    font-weight: bolder;
 }

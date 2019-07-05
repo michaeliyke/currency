@@ -1,97 +1,170 @@
 "use strict";
 Techie("#btn", function($, element, body, head, doc, _, w, Log, stringify, stringifyAll, a, data){ 
 	//With arrow function here, the "this" context reference will be lost. Let's live it alone
-	let country, currency, symbol, value = 1, local, foreign, from, 
-		to, output, exchangeRate, countryName, attribute, countryNames = [], object = {},
-	exchangeData, countries, localCurrency, foreignCurrency, blob = "", 
-	attrs, option, foreignGroup = getById("foreign"), 
-	localGroup = getById("local"),
-	local_symbolDiv = getById("local-symbol"),
-	foreign_symbolDiv = getById("foreign-symbol"),
-	valueDiv = getById("output"),
-	inputPoint = getById("value");
-
-	const update = () => {
-		inputPoint.value = "";
-		inputPoint.placeholder = "value to convert";
-		inputPoint.focus();
-		foreign_symbolDiv.textContent = localGroup[localGroup.selectedIndex].getAttribute("currencysymbol");
-		local_symbolDiv.textContent = foreignGroup[foreignGroup.selectedIndex].getAttribute("currencysymbol");
+	window.onerror = function (msg, link, line) {
+		console.error("Error has occured on line", line, msg);
 	};
 
 
+	const local_list = getById("local");
+	const foreign_list = getById("foreign");
+	let first_run = true;
+	let rate;
 
+
+	const update = () => { //Arrow function is not suitable here but I don't careprovided it's elegant 
+		let local_selected = local_list[local_list.selectedIndex];
+		let foreign_selected = foreign_list[foreign_list.selectedIndex];
+		
+		getById("local-symbol").textContent = local_list[local_list.selectedIndex].getAttribute("currencysymbol");
+		getById("foreign-symbol").textContent = foreign_list[foreign_list.selectedIndex].getAttribute("currencysymbol");
+		getById("foreign-rate").querySelector("span ~ span").textContent = rate; 
+
+		getById("local-rate").querySelector("span").textContent = "(" + local_selected.getAttribute("currencyId") + ") " + local_selected.getAttribute("currencySymbol"); 
+		getById("local-rate").querySelector("span ~ span").textContent = getById("value").value; 
+		
+		
+		getById("foreign-rate").querySelector("span").textContent = "At rate (" + foreign_selected.getAttribute("currencyId") + ") " + foreign_selected.getAttribute("currencySymbol");
+		[].forEach((index, element) => {
+
+		});
+		getById("output").textContent = "0.0";
+	};
+
+	function cleanup() {
+		const input = getById("value");
+		input.value = "";
+		input.placeholder = "value to convert";
+		input.focus();
+	}
+
+
+	
 	// Action on $("button#btn") click
-	 this.click(init);
-
-	//  Action if enter keyis pressed at all or $("select") option changes 
-	 $("select").change(update).enter(init);  //update currency symbol upon selection
-
-
-	 //Update stuff like the currency symbols on page load
+	this.click(init.bind());
+	
+	//  Action if enter key is pressed at all or $("select") option changes 
+	$("select").change(update).enter(init);
+	
+	
+	//Update stuff like the currency symbols on page load
 	update();
 	
-	// The Initial fetches
-	// fetch("http://www.apilayer.net/api/live?access_key=a004b58f8f078897543a12c710ba5e4d").then((data) => {
-	fetch("https://free.currconv.com/api/v7/countries?apiKey=0a112f5e6136c61fa2a8").then((data) => {
-		return data.json();
-	}).then((data) => {
-		countries = data["results"];
-		for(countryName in countries){
+	function updateLists(data) {
+		let countries = data["results"],
+		countryNames = [],
+		blob = "";
+		const object = {};
+		for (let countryName in countries) {
 			let attributes = "";
-			country = countries[countryName]; //A country grabbed
-			for(attribute in country){ //A country attribute
+			let country = countries[countryName]; //A country grabbed
+			for (let attribute in country) { //A country attribute
 				attributes = attributes.concat(` ${attribute}="${country[attribute]}" `);
-
-			} 
-			option = "<option".concat(` ${attributes}> ${country["currencySymbol"]} - ${country["name"]}(${country["currencyId"]}) </option>`);
+			}
+			let option = "<option".concat(` ${attributes}> ${country["currencySymbol"]} - ${country["name"]}(${country["currencyId"]}) </option>`);
 			countryNames.push(country["name"]);
 			object[country["name"]] = option;
 		}
+
 		countryNames = countryNames.sort((a, b) => {
 			return a > b;
 		});
-		
-		for(let countryName of countryNames){
+
+		for (let countryName of countryNames) {
 			blob = blob.concat(object[countryName]);
 		}
 
-	localGroup.innerHTML = blob;
-	foreignGroup.innerHTML = blob;
-	localGroup[ "selectedIndex" ] = getById("US")["index"];
-	foreignGroup[ "selectedIndex" ] = getById("NG")["index"];
-	update();
+		local_list.innerHTML = blob;
+		foreign_list.innerHTML = blob;
+		if (first_run) {
+			first_run = false;
+			local_list["selectedIndex"] = getById("NG")["index"];
+			foreign_list["selectedIndex"] = getById("US")["index"];
+		}
+		update();
+	}
+	
+	// Fetches during initial page load
+	// Later we could shift here to a Worker process which will determin if really need the fresh fetch at all
+	fetch("https://free.currconv.com/api/v7/countries?apiKey=0a112f5e6136c61fa2a8").then((data) => {
+		return data.json();
+	}).then((data) => {
+		updateLists(data);
+		return data;
 	}).catch((error) => {
 		console.error(`Whoops! Can't get the list of countries. Why? ${error}`);
 	});
 	
 		function init(e){ //Arrow functions cannot be hoisted because they are expressions
-	value = inputPoint.value || value;
-	local = localGroup[localGroup.selectedIndex];
-	localCurrency = local.getAttribute("currencyid");
-	foreign = foreignGroup[foreignGroup.selectedIndex]; 
-	foreignCurrency = foreign.getAttribute("currencyid");
-	from = encodeURIComponent(localCurrency);
-	to = encodeURIComponent(foreignCurrency);
+			const localCurrency = local_list[local_list.selectedIndex].getAttribute("currencyid");
+			const foreignCurrency = foreign_list[foreign_list.selectedIndex].getAttribute("currencyid");
+			
+			const from = encodeURIComponent(localCurrency);
+			const to = encodeURIComponent(foreignCurrency);
 	//Later,  I will cache this url below so I can implement offline first approach
 	//I will then check if I have data from this url, if so, I could decide to use it based on what network says
-	const url = `https://free.currconv.com/api/v7/convert?q=${from}_${to}&compact=ultra&apiKey=0a112f5e6136c61fa2a8`;
+	const url = `https://free.currconv.com/api/v7/convert?q=${to}_${from}&compact=ultra&apiKey=0a112f5e6136c61fa2a8`;
 
-	const local_symbol = local.getAttribute("currencysymbol");
-	const foreign_symbol = foreign.getAttribute("currencysymbol");
-	local_symbolDiv.textContent = local_symbol; 
- 	foreign_symbolDiv.textContent = foreign_symbol; 
   fetch(url).then((response) => {return response.json();}).then((data) => {
-		const rate = data[`${from}_${to}`] || 0;
-		valueDiv.textContent = Math.round((value * rate) * 100) / 100; //0.002793;
-    update();
+		rate = Math.round(data[`${to}_${from}`] * 100) / 100;
+		update();
+		getById("output").textContent = Math.round(((getById("value").value || 1) * data[`${to}_${from}`]) * 100) / 100; 
+		//0.002793;
+		cleanup();
   }).catch((error) => {
   	console.error(`Oh no! We can't fetch currency data. Why? ${error} `);
   });
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		function requestData(cb) {
+			// Once you get your hands on data, run cb on it
+		}
 		function getById(id){
 			return document.getElementById(id);
 		}
-			
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	});
 
