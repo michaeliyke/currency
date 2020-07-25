@@ -89,7 +89,7 @@ nav ul li a:active, nav ul li a:focus {
 }
 #container {
     background-color: #2ab9b9;
-    background-image: url("computer.jpg");
+    background-image: url("../images/computer.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
