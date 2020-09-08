@@ -12,7 +12,7 @@ Techie("#btn", function($, element, body, head, doc, _, w, Log, stringify, strin
 	let rate;
 
 
-	const update = () => { //Arrow function is not suitable here but I don't careprovided it's elegant 
+	const update = () => { //Arrow function is not suitable here but I don't care provided it's elegant 
 		let local_selected = local_list[local_list.selectedIndex];
 		let foreign_selected = foreign_list[foreign_list.selectedIndex];
 		
@@ -20,11 +20,11 @@ Techie("#btn", function($, element, body, head, doc, _, w, Log, stringify, strin
 		getById("foreign-symbol").textContent = foreign_list[foreign_list.selectedIndex].getAttribute("currencysymbol");
 		getById("foreign-rate").querySelector("span ~ span").textContent = rate; 
 
-		getById("local-rate").querySelector("span").textContent = "(" + local_selected.getAttribute("currencyId") + ") " + local_selected.getAttribute("currencySymbol"); 
+		getById("local-rate").querySelector("span").textContent = "(" + foreign_selected.getAttribute("currencyId") + ") " + foreign_selected.getAttribute("currencySymbol"); 
 		getById("local-rate").querySelector("span ~ span").textContent = getById("value").value; 
 		
 		
-		getById("foreign-rate").querySelector("span").textContent = "At rate (" + foreign_selected.getAttribute("currencyId") + ") " + foreign_selected.getAttribute("currencySymbol");
+		getById("foreign-rate").querySelector("span").textContent = "At rate (" + local_selected.getAttribute("currencyId") + ") " + local_selected.getAttribute("currencySymbol");
 		[].forEach((index, element) => {
 
 		});

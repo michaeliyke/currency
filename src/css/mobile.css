@@ -1,17 +1,37 @@
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) { 
+@media screen and (max-width: 599px) { 
+#body {
+    width: unset;
+    border-radius: unset;
+}
+#rates-info {
+    background-color: rgb(235, 235, 235);
+    width: unset;
+}
+#rates-info h2 {
+  margin-right: 0.5em;
+}
+#rates-info .rate {
+    flex-grow: 2;
+}
 #input-area {
     display: flex;
     flex-flow: column;
 }
-.input-flex{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
- 
-  margin-bottom: 1em
+.input-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 1em;
 }
+.input-flex:first-child, .input-flex:last-child{
+  display: inline-block;
+  /*flex-grow: 1;*/
+  }
+  .input-flex:first-child{
+    flex-grow: 2;
+  }
 .inner-flex{
-  flex-basis: 70%;
+  /*flex-basis: 70%;*/
 }
 select, input{
   width: 45%;
@@ -59,6 +79,3 @@ nav ul li a:active, nav ul li a:focus {
     border: medium none;
 }
 }
-
-
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) { /* Styles */ }
