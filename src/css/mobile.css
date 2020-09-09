@@ -4,7 +4,6 @@
     border-radius: unset;
 }
 #rates-info {
-    background-color: rgb(235, 235, 235);
     width: unset;
 }
 #rates-info h2 {
@@ -18,18 +17,22 @@
     flex-flow: column;
 }
 .input-flex {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
     margin-bottom: 1em;
 }
-.input-flex:first-child, .input-flex:last-child{
-  display: inline-block;
-  /*flex-grow: 1;*/
+.input-flex span {
+    font-size: 1.2em;
+    margin-right: 1em;
+}
+/*"(" + foreign_selected.getAttribute("currencyId") + ") "*/
+.input-flex span, .input-flex select, .input-flex input{
+  /*display: inline-block;*/
   }
-  .input-flex:first-child{
-    flex-grow: 2;
-  }
+.input-flex select, .input-flex input {
+  /*align-self: left;*/
+}
 .inner-flex{
   /*flex-basis: 70%;*/
 }

@@ -126,6 +126,7 @@ nav ul li a:active, nav ul li a:focus {
     justify-content: space-between;
     margin-bottom: 1em;
     width: 81%;
+    flex-wrap: wrap;
 }
 #rates-info .rate {
     align-self: center;

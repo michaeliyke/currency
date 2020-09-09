@@ -17,14 +17,15 @@ Techie("#btn", function($, element, body, head, doc, _, w, Log, stringify, strin
 		let foreign_selected = foreign_list[foreign_list.selectedIndex];
 		
 		getById("local-symbol").textContent = local_list[local_list.selectedIndex].getAttribute("currencysymbol");
-		getById("foreign-symbol").textContent = foreign_list[foreign_list.selectedIndex].getAttribute("currencysymbol");
+		getById("foreign-symbol").textContent =  foreign_list[foreign_list.selectedIndex].getAttribute("currencyId");
+		
 		getById("foreign-rate").querySelector("span ~ span").textContent = rate; 
 
-		getById("local-rate").querySelector("span").textContent = "(" + foreign_selected.getAttribute("currencyId") + ") " + foreign_selected.getAttribute("currencySymbol"); 
+		getById("local-rate").querySelector("span").textContent = "(" + foreign_selected.getAttribute("currencyId") + " - " + foreign_selected.getAttribute("currencySymbol") + ") "; 
 		getById("local-rate").querySelector("span ~ span").textContent = getById("value").value; 
 		
 		
-		getById("foreign-rate").querySelector("span").textContent = "At rate (" + local_selected.getAttribute("currencyId") + ") " + local_selected.getAttribute("currencySymbol");
+		getById("foreign-rate").querySelector("span").textContent = "At rate " + "(" + local_selected.getAttribute("currencyId") +  " - " + local_selected.getAttribute("currencySymbol") + ") ";
 		[].forEach((index, element) => {
 
 		});
@@ -61,7 +62,7 @@ Techie("#btn", function($, element, body, head, doc, _, w, Log, stringify, strin
 			for (let attribute in country) { //A country attribute
 				attributes = attributes.concat(` ${attribute}="${country[attribute]}" `);
 			}
-			let option = "<option".concat(` ${attributes}> ${country["currencySymbol"]} - ${country["name"]}(${country["currencyId"]}) </option>`);
+			let option = "<option".concat(` ${attributes}> (${country["currencyId"]} - ${country["currencySymbol"]}) - ${country["name"]} </option>`);
 			countryNames.push(country["name"]);
 			object[country["name"]] = option;
 		}
